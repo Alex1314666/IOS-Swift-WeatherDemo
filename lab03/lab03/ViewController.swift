@@ -15,6 +15,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var weatherLabel: UILabel!
     @IBOutlet weak var tempLabel: UILabel!
+    @IBOutlet weak var localTimeLabel: UILabel!
     
     @IBOutlet weak var searchTextField: UITextField!
     
@@ -135,8 +136,9 @@ class ViewController: UIViewController,UITextFieldDelegate {
     private func setDefaultView(){
         locationLabel.text = "HELLO"
         tempLabel.text = "SUNSHINE"
-        weatherLabel.text = "Check the Weather Now!"
+        weatherLabel.text = "Let's Check The Weather Now!"
         setWeatherImage(name: "sun.and.horizon")
+        localTimeLabel.text = ""
         let background = UIImage(named: "background")
 
         var imageView : UIImageView!
@@ -213,7 +215,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
                     self.locationLabel.text = weather.location.name
                     self.tempLabel.text = "\(weather.current.temp_c)C"
                     self.weatherLabel.text = weather.current.condition.text
-                   
+                    self.localTimeLabel.text = "Localtime: \(weather.location.localtime)"
                 }
 
             }
@@ -224,7 +226,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
     }
     
     private func setWeatherImage(name:String){
-        let config = UIImage.SymbolConfiguration(paletteColors:[.systemBlue,.systemYellow,.systemTeal])
+        let config = UIImage.SymbolConfiguration(paletteColors:[.systemBlue,.systemYellow,.systemGreen])
         weatherImage.preferredSymbolConfiguration = config
         weatherImage.image = UIImage(systemName: name)
     }
